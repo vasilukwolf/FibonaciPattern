@@ -17,6 +17,11 @@
 //    https://www.facebook.com/epistolariy                              //
 //////////////////////////////////////////////////////////////////////////
 import processing.pdf.*;
+import java.io.File;
+import java.io.IOException;
+import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+
 /* @pjs preload="img0.jpg, img1.jpg, img2.jpg, img3.jpg"; */
 
 float px, py, r, degree;
@@ -35,8 +40,6 @@ void setup() {
   beginRecord(PDF, "filename.pdf");
   background(#F2F7F4);
   px = width/2; py = height/2;
-  
-
 }
 
 void draw() {
@@ -72,6 +75,15 @@ void mousePressed(){
       ++imgNum;
       imgNum %= 4;
       img = loadImage("img" + imgNum + ".jpg");
+      BufferedImage image = null;
+      File f = null;
+    try{
+        f = new File("/home/eva/Develop/Java/FibonachiPattern/result/jony.jpg");
+        ImageIO.write(image, "jpg", f);
+        System.out.println("Writing complete.");
+      }catch(IOException e){
+        System.out.println("Error: "+e);
+    }
     }
   frameCount = iter = 0;
   background(#F2F7F4);
