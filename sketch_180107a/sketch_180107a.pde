@@ -30,7 +30,7 @@ float maxWeight = 8;
 float currWeight;
 float spacing = maxWeight+2;
 float goldenRatio = ((sqrt(5) + 1 ) / 2);
-int iter = 0, imgNum = (int)random(4);
+int iter = 0, imgNum = (int)random(4),randomFn = (int)random(999999);
 boolean smallChaos = false;
 PImage img;
 
@@ -69,21 +69,15 @@ void calcPointPos(float x, float y, float r, float graden) {
 
 void mousePressed(){
    if (mouseButton == RIGHT){
-    smallChaos = !smallChaos;
+      smallChaos = !smallChaos;
+      ++imgNum;
+      imgNum %= 4;
+      save("imgFibonachi" + randomFn+ imgNum + ".jpg");
     }
     else if (mouseButton == LEFT){
       ++imgNum;
       imgNum %= 4;
       img = loadImage("img" + imgNum + ".jpg");
-      BufferedImage image = null;
-      File f = null;
-    try{
-        f = new File("/home/eva/Develop/Java/FibonachiPattern/result/jony.jpg");
-        ImageIO.write(image, "jpg", f);
-        System.out.println("Writing complete.");
-      }catch(IOException e){
-        System.out.println("Error: "+e);
-    }
     }
   frameCount = iter = 0;
   background(#F2F7F4);
